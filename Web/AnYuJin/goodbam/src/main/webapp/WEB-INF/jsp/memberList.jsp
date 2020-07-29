@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -54,7 +58,9 @@ li:hover{
         .col-sm-2 {
           width: auto;
           height:10%;
+
         }
+ }
 </style>
 </head>
 <body>
@@ -102,16 +108,17 @@ li:hover{
                 </tr>
               </thead>
               <tbody>
+                <c:forEach items = "${list}" var = "list">
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
+                  <td></td>
+                  <td>${list.userID}</td>
+                  <td>${list.userName}</td>
+                  <td>${list.userEmail}</td>
                   <td>
-                
                   <a href="#"><i class="glyphicon glyphicon-remove"></i></a>    
                   </td>             
                 </tr>
+                </c:forEach>
               </tbody>
             </table>
             </div>

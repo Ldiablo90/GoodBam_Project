@@ -2,23 +2,32 @@ package com.springboot.goodbam.controller;
 
 
 
-import org.springframework.stereotype.Controller;
+import com.springboot.goodbam.svc.UserService;
+import com.springboot.goodbam.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@Controller
+@RestController
 public class LoginController {
 
+    @Autowired
+    UserService userService;
     @RequestMapping("/")
-    public  String mainPage() throws Exception {
-        String page="index";
+    public ModelAndView mainPage() throws Exception {
+        ModelAndView mav = new ModelAndView("index");
 
-        return page;
+        return mav;
     }
 
     @RequestMapping("/login")
@@ -43,10 +52,19 @@ public class LoginController {
 
 
     @RequestMapping("/memberList")
-    public  String memberList() throws Exception {
-        String page="memberList";
+    public  ModelAndView memberList() throws Exception {
 
-        return page;
+        List<UserVO> list = userService.userList();
+        System.out.println("컨트롤러 들어옴");
+//        ArrayList<UserVO> list = userService.userList();
+        System.out.println("list가지고 컨트롤러로 나옴");
+        System.out.println(list);
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("memberList");
+//        model.addAttribute("list", list);
+        mav.addObject("list",list);
+        System.out.println("mav");
+        return mav;
     }
 
 
