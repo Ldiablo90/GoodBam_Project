@@ -1,61 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto&display=swap');
-body {
-    font-family: 'Roboto', sans-serif;
-}
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 
-.login-page {
-    width: 400px;
-    padding: 8% 0 0;
-    margin: auto;
-}
-
-.form {
-    position:relative;
-    max-width: 360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-
-}
-.form img{
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-
-
-.form input[type=text],
-.form input[type=password] {
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-.form button {
-
+<style>
+h1{
+    font-weight: bold;
     text-transform: uppercase;
-    outline: 0;
-    background: #2497F4;;
+    text-align: center;
+    color: #FFF;
+}
+.login-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
     width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-}
-.form button:hover{
-    background: #ed7d31;
+
 }
 
-
-
-.checkbox{
-    float: left;
-    margin-bottom: 10px;
-    font-family: 'Noto Sans KR', sans-serif;
+.login{
+    background: #FFF;
+    padding: 80px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
 }
+.login .form-control {
+    box-shadow: none;
+    padding: 30px;
+    border: 1px solid #e8e8e8;
+    background: #e8e8e8;
+}
+
+.login .btn{
+    background: #b88cd2;
+    border: none;
+    color: #FFF;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-size: 16px;
+    height: 50px;
+    width: 100%;
+}
+.logo{
+	text-align:center;
+	margin-bottom: 20px;
+
+}
+img{
+	width:75%;
+	height: 75%;
+}
+
+</style>

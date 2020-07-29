@@ -19,21 +19,24 @@
     })
 </script>
 
-	<div class="login-page">
-
-        <div class="form">
-            <img src="/asset/images/georlocklogo.png">
-<%--로그인폼--%>
-                <form class="login-form" name="login" action="login"  method="post">
-                    <input type="text" placeholder="ID"  name = "empNo" class="inputcontrol"/>
-                    <input type="password" placeholder="PASSWORD" name = "userPw" class="inputcontrol"/>
-                        <div class="checkbox">
-                            <label class="checklabel">
-                            <input type="checkbox" name="autoLogin" class="inp_radio">자동 로그인
-                            </label>
-                        </div>
-                    <button type="submit">login</button>
-                </form>
+     <div class="login-form">
+   <div class="container">
+     <div class="row">
+       <h1>LOGIN FORM</h1>
+         <div class="col-lg-6 col-lg-offset-3">
+            <div class = "logo">
+            	<img alt="logo" src="images/logoh.PNG" >
+            </div>
+             <form class="login-form" name="login" action="login"  method="post">
+             <div class="form-group">
+               <input type="password" class="form-control" placeholder="Password">
+             </div>
+             <button type="submit" class="btn btn-default">Login</button>
+           </form>
+         </div>
+      </div>
+   </div>
+</div>
 </body>
 </html>
 </html>
