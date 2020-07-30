@@ -3,6 +3,7 @@ package com.example.goodbam
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_sign_up2.*
 import java.net.HttpURLConnection
@@ -19,13 +20,22 @@ class Signup2Activity : AppCompatActivity() {
         val userName = intent.getStringExtra("userName")
         val userQue = "signup2_spinner.get().toString()"
         val userAns = signup2_et_answer.text.toString()
+
+
         // 뒤로가기
         signup2_btn_back.setOnClickListener {
             var intent = Intent(this, Signup1Activity::class.java)
             startActivity(intent)
         }
         signup2_btn_signup.setOnClickListener {
+            Log.i("testlog","signup2 btn")
 
+            Thread(){
+                var checke:String = Signup("$userID","$userPass","$userName","$userQue","$userAns")
+                runOnUiThread{
+                    Log.i("testlog","$checke")
+                }
+            }.start()
 
 
             var intent = Intent(this, LoginActivity::class.java)
@@ -33,12 +43,9 @@ class Signup2Activity : AppCompatActivity() {
         }
     }
     fun Signup(userID:String, userPass:String, userName:String, userQue:String, userAns:String):String{
-        var enconame = URLEncoder.encode(userName, "UTF-8")
-        var encoque = URLEncoder.encode(userQue, "UTF-8")
-        var encoans = URLEncoder.encode(userAns, "UTF-8")
-        val url = URL("http://해당주소 쓰기:포트번호/매핑할이름?userID=$userID userPass=$userPass userName=$enconame userQue=$encoque userAns=$encoans")
+        val url = URL("http://192.168.0.66:8090/SignUp?userID=${userID}&userPass=${userPass}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
         val conn = url.openConnection() as HttpURLConnection
-
+        Log.i("testlog","${conn.responseCode}")
         if(conn.responseCode == 200){
             val txt = url.readText()
             return "$txt"

@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_up1.*
+import java.net.HttpURLConnection
+import java.net.URL
 
 class Signup1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up1)
 
+        var idcheack = false
+
+        // 뒤로가기 버튼
         signup_btn_back.setOnClickListener {
             Toast.makeText(this,"뒤로가기",Toast.LENGTH_SHORT).show()
             var intent = Intent(this, LoginActivity::class.java)
@@ -18,6 +23,7 @@ class Signup1Activity : AppCompatActivity() {
         }
         // 아이디 중복검사 체크하기
         signup_btn_idcheck.setOnClickListener {
+            idcheack = true
             Toast.makeText(this,"구현 준비중",Toast.LENGTH_SHORT).show()
 
         }
