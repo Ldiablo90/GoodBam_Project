@@ -84,12 +84,12 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.5"/>
+                            android:layout_weight="0.3"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="0.6"
+                            android:layout_weight="0.7"
                             android:text="@string/ID_search_name"
                             android:textColor="@color/sky"
                             android:textSize="18dp" />
@@ -98,7 +98,7 @@
                             android:id="@+id/id_search_et_name"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1.2"
+                            android:layout_weight="1.4"
                             android:backgroundTint="@color/sky"
                             android:hint="@string/ID_search_name_hint"
                             android:paddingLeft="10dp"
@@ -107,7 +107,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.7"
+                            android:layout_weight="0.8"
                             />
                         <Spinner
 
@@ -121,12 +121,13 @@
                             android:id="@+id/id_search_et_ans"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1.2"
+                            android:layout_weight="1.4"
                             android:backgroundTint="@color/sky"
                             android:hint="@string/ID_search_answer_hint"
                             android:paddingLeft="10dp"
                             android:textColorHint="@color/hint"
                             android:textSize="16dp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"

@@ -112,7 +112,7 @@
                                 android:background="@color/setting_page"
                                 />
                             <EditText
-                                android:id="@+id/temperature"
+                                android:id="@+id/main_tv_temp"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.3"
