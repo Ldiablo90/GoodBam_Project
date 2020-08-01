@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         // 회원찾기 버튼 누를 시
         login_btn_find.setOnClickListener {
             // 회원찾기 페이지로 이동
-            var intent = Intent(this, IdsearchActivity::class.java)
+            var intent = Intent(this, IDsearchkActivity::class.java)
             startActivity(intent)
         }
     }
