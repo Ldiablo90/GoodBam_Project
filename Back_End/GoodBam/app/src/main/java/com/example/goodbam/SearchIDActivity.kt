@@ -3,13 +3,15 @@ package com.example.goodbam
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_id_search.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
-class IDsearchkActivity : AppCompatActivity() {
+class SearchIDActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_id_search)
@@ -21,7 +23,7 @@ class IDsearchkActivity : AppCompatActivity() {
         }
         // 비밀번호 찾기로 이동 버튼
         id_search_btn_pass.setOnClickListener {
-            var intent = Intent(this,PassSearchActivity::class.java )
+            var intent = Intent(this,SearchPassActivity::class.java )
             startActivity(intent)
         }
         // 아이디 찾기 버튼 누를시
@@ -36,9 +38,12 @@ class IDsearchkActivity : AppCompatActivity() {
             Thread(){
                 val idsearch = idSearch(userName, userQue, userAns)
                 runOnUiThread{
-                    if(idsearch.get(0).equals("200")){
-                        var obj:JSONObject = idsearch.get(1) as JSONObject
-                        intent.putExtra("userID",obj["userID"].toString())
+                    Log.i("test","idsearch[0] : ${idsearch[0]}")
+                    Log.i("test","idsearch[1] : ${idsearch[1]}")
+
+                    // 성공적으로 찾게 되면
+                    if(idsearch[0].equals("200") ){
+                        intent.putExtra("userID",idsearch[1])
                         startActivity(intent)
                     }
                     else{
@@ -48,17 +53,24 @@ class IDsearchkActivity : AppCompatActivity() {
             }.start()
         }
     }
-    fun idSearch(userName:String, userQue:String, userAns:String):ArrayList<String>{
-        val url = URL("http://192.168.0.66:8090/IdSearch?userName=${userName}&userQue=${userQue}&userAns=${userAns}")
-        val conn = url.openConnection() as HttpURLConnection
+    fun idSearch(userName:String, userQue:String, userAns:String): ArrayList<String> {
+
         var search:ArrayList<String> = arrayListOf()
+        val url = URL("http://172.30.1.36:8090/IdSearch?userName=${userName}&userQue=${userQue}&userAns=${userAns}")
+        var conn = url.openConnection() as HttpURLConnection
 
-        val connet = conn.responseCode.toString()
-        val userID = url.readText()
+        // 접속이 성공하면 200
+        var connet = conn.responseCode.toString()
+        // JSON형 튜플이 들어온다
+        var userID = url.readText()
 
+
+        var jsonarr:JSONArray = JSONArray(userID)
+        var obj:JSONObject = jsonarr.get(0) as JSONObject
+            // JSON 형태를 조절하여 필요한 값만 추출
         search.add(connet)
-        search.add(userID)
-
+        search.add(obj["userID"].toString())
         return search
+
     }
 }

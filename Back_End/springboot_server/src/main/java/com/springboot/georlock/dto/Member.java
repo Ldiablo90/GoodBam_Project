@@ -8,11 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Member {
-       private String userID ;
-       private String userPass ;
-       private String userName;
-       private String userQue ;
-       private String userAns ;
+       private String userID = "";
+       private String userPass = "";
+       private String userName ="";
+       private String userQue  ="";
+       private String userAns  ="";
 
        public String getUserID() {
               return userID;

@@ -32,15 +32,28 @@ public class AppService {
         member.setUserName(userName);
         member.setUserQue(userQue);
         member.setUserAns(userAns);
-        return memberMapper.idsearch(member);
+
+        List<Member> resurt = memberMapper.idsearch(member);
+
+
+        System.out.println("resurt : "+resurt);
+        if(resurt.isEmpty()){
+            Member temp = new Member();
+            resurt.add(temp);
+            return resurt;
+        }
+        else{
+            return resurt;
+        }
+
     }
     // 비밀번호 찾기 서비스
-    public void passsearch(String userName, String userID, String userQue, String userAns) throws Exception {
+    public List<Member> passsearch(String userName, String userID, String userQue, String userAns) throws Exception {
         Member member = new Member();
         member.setUserName(userName);
         member.setUserID(userID);
         member.setUserQue(userQue);
         member.setUserAns(userAns);
-        memberMapper.passsearch(member);
+        return memberMapper.passsearch(member);
     }
 }

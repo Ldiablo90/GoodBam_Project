@@ -16,7 +16,7 @@
 
     <!-- 비밀번호 찾기 -->
     <select id="psssearch" parameterType="com.springboot.georlock.dto.Member" resultType="com.springboot.georlock.dto.Member">
-        SELECT userID, userPass FROM MEMBER WHERE userID = #{userID} AND userName = #{userName} AND userQue = #{userQue} AND userAns = #{userAns};
+        SELECT userPass FROM MEMBER WHERE userID = #{userID} AND userName = #{userName} AND userQue = #{userQue} AND userAns = #{userAns};
     </select>
 
 </mapper>

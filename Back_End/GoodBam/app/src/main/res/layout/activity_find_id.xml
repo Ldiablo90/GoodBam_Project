@@ -38,6 +38,14 @@
             android:gravity="center"
             android:hint="@string/Find_id_tv2" />
 
+        <TextView
+            android:id="@+id/find_id_tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Find_id_tv3"
+            android:gravity="center"/>
+
         <Button
             android:id="@+id/find_id_btn"
             android:layout_width="wrap_content"

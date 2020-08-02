@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FindIDActivity"></activity>
-        <activity android:name=".PassSearchActivity" />
+        <activity android:name=".FindPassActivity"></activity>
+        <activity android:name=".FindIDActivity" />
+        <activity android:name=".SearchPassActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".IDsearchkActivity" />
+        <activity android:name=".SearchIDActivity" />
         <activity android:name=".Signup2Activity" />
         <activity android:name=".Signup1Activity" />
         <activity android:name=".LoginActivity" />

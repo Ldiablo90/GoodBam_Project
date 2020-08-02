@@ -51,6 +51,7 @@
 
     <string name="Find_id_tv1">회원님께서 찾은 아이디는</string>
     <string name="Find_id_tv2">찾은 아이디</string>
+    <string name="Find_id_tv3">입니다.</string>
     <string name="Find_id_btn">확인</string>
 
 </resources>
