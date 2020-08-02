@@ -2,10 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.springboot.georlock.mapper.SignupMapper">
-    <insert id="signUpis" parameterType ="com.springboot.georlock.dto.Member"
-           >
+<mapper namespace="com.springboot.georlock.mapper.MemberMapper">
+
+    <!-- 회원가입 -->
+    <insert id="signUpis" parameterType ="com.springboot.georlock.dto.Member">
         INSERT INTO MEMBER(userID, userPass, userName, userQue, userAns) VALUES(#{userID},#{userPass},#{userName},#{userQue},#{userAns});
     </insert>
+
+    <!-- 아이디 찾기 -->
+    <select id="idsearch" parameterType="com.springboot.georlock.dto.Member" resultType="com.springboot.georlock.dto.Member">
+        SELECT userID FROM MEMBER WHERE  userName = #{userName} AND userQue = #{userQue} AND userAns = #{userAns};
+    </select>
+
+    <!-- 비밀번호 찾기 -->
+    <select id="psssearch" parameterType="com.springboot.georlock.dto.Member" resultType="com.springboot.georlock.dto.Member">
+        SELECT userID, userPass FROM MEMBER WHERE userID = #{userID} AND userName = #{userName} AND userQue = #{userQue} AND userAns = #{userAns};
+    </select>
 
 </mapper>

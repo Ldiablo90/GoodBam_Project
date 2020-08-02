@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_sign_up2.*
 import java.net.HttpURLConnection
@@ -15,11 +16,7 @@ class Signup2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
 
-        val userID = intent.getStringExtra("userID")
-        val userPass = intent.getStringExtra("userPass")
-        val userName = intent.getStringExtra("userName")
-        val userQue = "signup2_spinner.get().toString()"
-        val userAns = signup2_et_answer.text.toString()
+
 
 
         // 뒤로가기
@@ -27,31 +24,33 @@ class Signup2Activity : AppCompatActivity() {
             var intent = Intent(this, Signup1Activity::class.java)
             startActivity(intent)
         }
+        // 회원가입 확인 버튼
         signup2_btn_signup.setOnClickListener {
-            Log.i("testlog","signup2 btn")
+            val userID = intent.getStringExtra("userID")
+            val userPass = intent.getStringExtra("userPass")
+            val userName = intent.getStringExtra("userName")
+            val userQue = signup2_spinner.selectedItem.toString()
+            val userAns = signup2_et_answer.text.toString()
 
             Thread(){
-                var checke:String = Signup("$userID","$userPass","$userName","$userQue","$userAns")
+                var checke:Int = Signup("$userID","$userPass","$userName","$userQue","$userAns")
                 runOnUiThread{
-                    Log.i("testlog","$checke")
+                    // 정상적으로 실행되었는지 확인
+                    if(checke == 200){
+                        Toast.makeText(this,"화원가입을 축하드립니다.",Toast.LENGTH_SHORT).show()
+                        var intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(this,"화원가입이 안되었습니다.",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }.start()
-
-
-            var intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
         }
     }
-    fun Signup(userID:String, userPass:String, userName:String, userQue:String, userAns:String):String{
+    fun Signup(userID:String, userPass:String, userName:String, userQue:String, userAns:String):Int{
         val url = URL("http://192.168.0.66:8090/SignUp?userID=${userID}&userPass=${userPass}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
         val conn = url.openConnection() as HttpURLConnection
-        Log.i("testlog","${conn.responseCode}")
-        if(conn.responseCode == 200){
-            val txt = url.readText()
-            return "$txt"
-        }
-        else{
-            return "fall"
-        }
+        return conn.responseCode
     }
 }
