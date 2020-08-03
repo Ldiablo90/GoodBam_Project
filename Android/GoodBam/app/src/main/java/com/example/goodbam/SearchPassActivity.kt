@@ -24,6 +24,13 @@ class SearchPassActivity : AppCompatActivity() {
 
         // 아이디찾기로 돌아가기 버튼
         pass_search_btn_id.setOnClickListener {
+            val intent = Intent(this, SearchIDActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        // 비밀번호 찾기
+        pass_search_btn_find.setOnClickListener {
 
             val userName = pass_search_et_name.text.toString()
             val userID = pass_search_et_id.text.toString()
@@ -45,15 +52,10 @@ class SearchPassActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-        // 비밀번호 찾기
-        pass_search_btn_find.setOnClickListener {
-
-        }
     }
 
     fun PassSearch(userName: String, userID: String, userQue: String, userAns: String): ArrayList<String> {
-        val url = URL("http://172.30.1.36:8090/PassSearch?userID=${userID}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
+        val url = URL("http://15.165.223.98:8090/PassSearch?userID=${userID}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
         val conn = url.openConnection() as HttpURLConnection
         var search: ArrayList<String> = arrayListOf()
 

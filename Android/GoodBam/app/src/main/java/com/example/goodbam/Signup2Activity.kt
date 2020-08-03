@@ -49,7 +49,7 @@ class Signup2Activity : AppCompatActivity() {
         }
     }
     fun Signup(userID:String, userPass:String, userName:String, userQue:String, userAns:String):Int{
-        val url = URL("http://172.30.1.36:8090/SignUp?userID=${userID}&userPass=${userPass}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
+        val url = URL("http://15.165.223.98:8090/SignUp?userID=${userID}&userPass=${userPass}&userName=${userName}&userQue=${userQue}&userAns=${userAns}")
         val conn = url.openConnection() as HttpURLConnection
         return conn.responseCode
     }

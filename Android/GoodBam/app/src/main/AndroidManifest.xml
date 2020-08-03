@@ -12,10 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChartPageActivity"/>
-        <activity android:name=".IdsearchActivity" />
-        <activity android:name=".PasssearchActivity" />
+        <activity android:name=".FindPassActivity"></activity>
+        <activity android:name=".FindIDActivity" />
+        <activity android:name=".SearchPassActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SearchIDActivity" />
+        <activity android:name=".Signup2Activity" />
+        <activity android:name=".Signup1Activity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".ChartPageActivity" />
         <activity android:name=".LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Signup1Activity" />
-        <activity android:name=".Signup2Activity"></activity>
     </application>
 
 </manifest>

@@ -49,4 +49,9 @@
     <string name="Setting_humidifier">가습기</string>
     <string name="Setting_btn_save">저장</string>
 
+    <string name="Find_id_tv1">회원님께서 찾은 아이디는</string>
+    <string name="Find_id_tv2">찾은 아이디</string>
+    <string name="Find_id_tv3">입니다.</string>
+    <string name="Find_id_btn">확인</string>
+
 </resources>

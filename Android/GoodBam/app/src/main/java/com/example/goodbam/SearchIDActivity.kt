@@ -21,11 +21,13 @@ class SearchIDActivity : AppCompatActivity()  {
             var intent = Intent(this,LoginActivity::class.java )
             startActivity(intent)
         }
+
         // 비밀번호 찾기로 이동 버튼
         id_search_btn_pass.setOnClickListener {
             var intent = Intent(this,SearchPassActivity::class.java )
             startActivity(intent)
         }
+
         // 아이디 찾기 버튼 누를시
         id_search_btn_find.setOnClickListener {
             Toast.makeText(this,"rate activity",Toast.LENGTH_SHORT).show()
@@ -56,7 +58,7 @@ class SearchIDActivity : AppCompatActivity()  {
     fun idSearch(userName:String, userQue:String, userAns:String): ArrayList<String> {
 
         var search:ArrayList<String> = arrayListOf()
-        val url = URL("http://172.30.1.36:8090/IdSearch?userName=${userName}&userQue=${userQue}&userAns=${userAns}")
+        val url = URL("http://15.165.223.98:8090/IdSearch?userName=${userName}&userQue=${userQue}&userAns=${userAns}")
         var conn = url.openConnection() as HttpURLConnection
 
         // 접속이 성공하면 200

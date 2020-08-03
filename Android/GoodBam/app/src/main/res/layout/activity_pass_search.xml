@@ -134,7 +134,7 @@
                             android:layout_weight="0.9"
                             />
                         <Spinner
-
+                            android:id="@+id/pass_search_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
