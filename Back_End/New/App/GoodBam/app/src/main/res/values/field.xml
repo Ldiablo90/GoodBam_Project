@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerArray">
+        <item>아이디/비밀번호 질문 선택</item>
+        <item>내가 태어난 곳은?</item>
+        <item>나의 별명은?</item>
+        <item>나의 초등학교명은?</item>
+        <item>나의 전공은?</item>
+        <item>내가 가장 좋아하는 색깔은?</item>
+
+    </string-array>
+
+</resources>
