@@ -37,6 +37,7 @@ public class AppService {
 
 
         System.out.println("resurt : "+resurt);
+        // 조회가 안되면 빈칸이 오기 때문에 값을 집어 넣어 조회해도 공란이 나가게 한다.
         if(resurt.isEmpty()){
             Member temp = new Member();
             resurt.add(temp);
@@ -55,5 +56,12 @@ public class AppService {
         member.setUserQue(userQue);
         member.setUserAns(userAns);
         return memberMapper.passsearch(member);
+    }
+
+    // 아이디 체크 서비스
+    public List<Member> idcheck(String userID)throws Exception{
+        Member member = new Member();
+        member.setUserID(userID);
+        return memberMapper.idcheck(member);
     }
 }

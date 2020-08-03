@@ -17,4 +17,7 @@ public interface MemberMapper {
 
     // 비밀번호 찾기로 이동하는 곳
     public List<Member> passsearch(Member member) throws Exception;
+    
+    // 아이디 체크로 이동하는 곳
+    public List<Member> idcheck(Member member) throws Exception;
 }

@@ -19,4 +19,9 @@
         SELECT userPass FROM MEMBER WHERE userID = #{userID} AND userName = #{userName} AND userQue = #{userQue} AND userAns = #{userAns};
     </select>
 
+    <!-- 아이디 유무 체크 -->
+    <select id="psssearch" parameterType="com.springboot.georlock.dto.Member" resultType="com.springboot.georlock.dto.Member">
+        SELECT userPass FROM MEMBER WHERE userID = #{userID};
+    </select>
+
 </mapper>

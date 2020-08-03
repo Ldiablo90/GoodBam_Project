@@ -32,11 +32,8 @@ public class AppController {
     // 아이디찾기 컨트롤러
     @GetMapping(value = "/IdSearch")
     public List<Member> idsearch(@RequestParam String userName, @RequestParam String userQue, @RequestParam String userAns) throws Exception {
-        List<Member> temp = appService.idsearch(userName,userQue,userAns);
 
-        return temp;
-
-
+        return appService.idsearch(userName,userQue,userAns);
     }
 
     // 비밀번호 찾기 컨트롤러
@@ -44,6 +41,13 @@ public class AppController {
     public List<Member> passsearch(@RequestParam String userName, @RequestParam String userID, @RequestParam String userQue, @RequestParam String userAns) throws Exception {
 
         return appService.passsearch(userName, userID, userQue, userAns);
+    }
+
+    // 아이디 체크 컨트롤러
+    @GetMapping(value = "/Idcheck")
+    public List<Member> idcheck(@RequestParam String userID)throws Exception{
+
+        return appService.idcheck(userID);
     }
 
 }

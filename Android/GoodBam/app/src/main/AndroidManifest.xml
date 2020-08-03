@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FindPassActivity"></activity>
+        <activity android:name=".FindPassActivity"/>
         <activity android:name=".FindIDActivity" />
         <activity android:name=".SearchPassActivity" />
         <activity android:name=".MainActivity" />

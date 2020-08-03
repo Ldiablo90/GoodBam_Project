@@ -11,8 +11,11 @@ public class Member {
        private String userID = "";
        private String userPass = "";
        private String userName ="";
+       private String userEmail ="";
        private String userQue  ="";
        private String userAns  ="";
+       private String userSignupdate  ="";
+
 
        public String getUserID() {
               return userID;
@@ -38,6 +41,10 @@ public class Member {
               this.userName = userName;
        }
 
+       public String getUserEmail() { return userEmail; }
+
+       public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+
        public String getUserQue() {
               return userQue;
        }
@@ -53,4 +60,8 @@ public class Member {
        public void setUserAns(String userAns) {
               this.userAns = userAns;
        }
+
+       public String getUserSignupdate() { return userSignupdate; }
+
+       public void setUserSignupdate(String userSignupdate) { this.userSignupdate = userSignupdate; }
 }
