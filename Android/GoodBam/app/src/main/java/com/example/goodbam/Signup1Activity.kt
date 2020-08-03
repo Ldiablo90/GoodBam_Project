@@ -52,7 +52,7 @@ class Signup1Activity : AppCompatActivity() {
 //            아직 구현안된 중복검사 구현 코드
             if(idbool){
 
-                if (signup_et_pw1.text.equals(signup_et_pw2.text) && ){
+                if (signup_et_pw1.text.equals(signup_et_pw2.text)){
                     var intent = Intent(this, Signup2Activity::class.java)
                     startActivity(intent)
                 }
