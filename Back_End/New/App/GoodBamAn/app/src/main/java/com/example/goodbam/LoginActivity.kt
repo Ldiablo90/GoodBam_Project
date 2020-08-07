@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
                 runOnUiThread {
                     if(tmp.equals("로그인 성공")){
                         val intent = Intent(this,MainActivity::class.java)
+                        intent.putExtra("userID",login_et_id.text.toString())
                         startActivity(intent)
 
                     }

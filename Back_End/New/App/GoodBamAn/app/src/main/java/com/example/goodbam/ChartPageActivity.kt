@@ -161,7 +161,7 @@ class ChartPageActivity : AppCompatActivity() {
             setVisibleXRangeMaximum(7f) //x축 데이터 최대 표현 개수
             setPinchZoom(false) //확대 설정
             isDoubleTapToZoomEnabled = false //더블탭 확대 설정
-            description.text = "" // 온도차트 안의 텍스트 설정
+            description.text = "" // 습도차트 안의 텍스트 설정
             background = resources.getDrawable(R.color.yellow) //배경색
             description.textSize = 15f // 텍스트 사이즈
             setExtraOffsets(8f, 16f, 8f, 16f)//차트 padding 설정
