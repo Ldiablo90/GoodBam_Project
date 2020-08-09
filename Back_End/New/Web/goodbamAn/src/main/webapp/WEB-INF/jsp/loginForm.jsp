@@ -41,6 +41,7 @@ h1{
     padding: 30px;
     border: 1px solid #e8e8e8;
     background: #e8e8e8;
+    font-size:20px;
 }
  
 .login .btn{ 
@@ -76,9 +77,7 @@ img{
             	<img src="/asset/logoh.PNG" >
             </div>
              <div class="form-group">
-               <input type="text" class="form-control" placeholder="ID" name = "userID">
-               <input type="password" class="form-control" placeholder="Password"
-                        name = "userPW">
+               <input type="password" class="form-control" placeholder="Password" name = "userPW">
              </div>
              <button type="submit" class="btn btn-default">Login</button>
            </form>

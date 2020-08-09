@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,10 +64,11 @@ li:hover{
 
 
  @media ( max-width: 560px ) {
-        .col-sm-2 {
-          width: auto;
-          height:10%;
-        }
+     .col-sm-2 {
+         width: auto;
+         height: 10%;
+     }
+ }
 </style>
 </head>
 <body>
@@ -76,11 +78,11 @@ li:hover{
 	  <div class="container-fluid" id="head">
    		
         <div class="navbar-header">
-          <a href="index.jsp"><img src="/asset/images/logow.PNG" class="navbar-brand" style="width:150px; height: 60px;" ></a>
+          <a href="memberList"><img src="/asset/logow.PNG" class="navbar-brand" style="width:150px; height: 60px;" ></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">로그아웃</a></li>
+            <li><a href="login">로그아웃</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">&nbsp;&nbsp;
@@ -95,8 +97,8 @@ li:hover{
 		<div class="row">
 	        <div class="col-sm-2">
 	          <ul class="side" >
-	            <li><a href="memberList.jsp">회원관리</a></li>
-	            <li><a href="dataTable.jsp">데이터분석</a></li>
+	            <li><a href="memberList">회원관리</a></li>
+	            <li><a href="dataTable">데이터분석</a></li>
 	          </ul>
 	       </div>
         <div class="col-sm-9">
@@ -118,19 +120,19 @@ li:hover{
                   <th>Update/Delete</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td><a href="memberData.jsp">Lorem</a></td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>
-                  <a href="#"><i class="glyphicon glyphicon-ok"></i></a> 
-                  &nbsp; &nbsp;/&nbsp;&nbsp;
-                  <a href="#"><i class="glyphicon glyphicon-remove"></i></a>    
-                  </td>             
-                </tr>
-              </tbody>
+                <tbody>
+                <c:forEach items = "${list}" var = "list">
+                    <tr>
+                        <td>${list.userNum}</td>
+                        <td><a href="/memberData?userNum=${list.userNum}">${list.userID}</a></td>
+                        <td>${list.userName}</td>
+                        <td>${list.userEmail}</td>
+                        <td>
+                            <a href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
             </div>
           </div>

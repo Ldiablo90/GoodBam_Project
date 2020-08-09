@@ -15,7 +15,15 @@ public class UserVO {
     private String userQue ;
     private String userAns;
     private String userSignupdate;
+    private int userNum;
 
+    public int getUserNum() {
+        return userNum;
+    }
+
+    public void setUserNum(int userNum) {
+        this.userNum = userNum;
+    }
 
     public String getUserID() {
         return userID;

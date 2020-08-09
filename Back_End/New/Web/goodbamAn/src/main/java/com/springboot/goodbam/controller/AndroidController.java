@@ -73,26 +73,7 @@ public class AndroidController {
         return userPass;
     }
 
-    // 현제 온도띄우기!!!!
-    @GetMapping(value = "/userTempNow")
-    public String usertempNow(String userID) throws Exception {
-        return "";
-    }
-    // 현제온,습도 조절
-    @GetMapping(value = "/userEditTemp")
-    public String userEditTemp(String userID) throws Exception {
-        return "";
-    }
-    // 나이트모드
-    @GetMapping(value = "/nightMode")
-    public String nightMode(String userID) throws Exception {
-        return "";
-    }
-    // 그래프 온도띄우기
-    @GetMapping(value = "/userChart")
-    public String userChart(String userID) throws Exception {
-        return "";
-    }
+
 
 
 

@@ -28,5 +28,5 @@ public interface UserMapper {
     public  String searchPass(UserVO userVO) throws Exception;
 
 
-
+    public int loginWeb(String userPW) throws Exception;
 }

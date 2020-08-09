@@ -123,12 +123,10 @@ public class UserService {
     }
 
 
+    public int loginService(String userPW) throws Exception {
 
-
-
-
-
-
+        return userMapper.loginWeb(userPW);
+    }
 }
 
 
