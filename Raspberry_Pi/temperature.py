@@ -5,22 +5,13 @@ import requests
 import Adafruit_DHT
 
 sensor = Adafruit_DHT.DHT11
-
 pin = 4
-led_pin ={'pin_R':24, 'pin_G':22, 'pin_B':23}
+#핀 번호 할당 방법은 커넥터 핀 번호로 설정
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)#그린
+GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)#블루
+GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)#레드
 
-GPIO.setmode(GPIO.BCM)       # GPIO BCM 모드 설정                                     
-for i in led_pin:
-    GPIO.setup(led_pin[i], GPIO.OUT)   # 핀 모드를 출력으로 설정
-    GPIO.output(led_pin[i], GPIO.HIGH) # LED를 HIGH로 설정해서 LED 끄기
-
-p_R = GPIO.PWM(pins['pin_R'], 2000)  # 주파수 설정 2KHz
-p_G = GPIO.PWM(pins['pin_G'], 2000)
-p_B = GPIO.PWM(pins['pin_B'], 2000)
-
-p_R.start(0)      # 초기 듀티 사이클 = 0 (LED 끄기)
-p_G.start(0)
-p_B.start(0)
 
 try:
     while True :
@@ -32,23 +23,22 @@ try:
         if humidty is not None and temperature is not None :
             print("Temperature = {0:0.1f}*C Humidity = {1:0.1f}%".format(temperature, humidty))
             float discomfortIndex = (1.8 * temperature) - (0.55 * (1 - humidity / 100.0) * (1.8 * temperature - 26)) + 32;
+            #측정된 온도, 습도값으로 불쾌지수 값 계산 후 시리얼 모니터에 출력
             print(discomfortIndex)
             
-            
-
-  else {
-    // 에어콘(파란색 LED)를 끔
-    digitalWrite(airCon, LOW);
-    flag = 0;
-  }
+            if discomfortIndex > 70: #불쾌지수가 70이상이면 파랑LED
+                GPIO.output(22,GPIO.LOW)
+                GPIO.output(23,GPIO.HIGH)
+                GPIO.output(24,GPIO.LOW)
+            else:
+                #불쾌지수가 미만이이면 초록LED
+                GPIO.output(22,GPIO.HIGH)
+                GPIO.output(23,GPIO.LOW)
+                GPIO.output(24,GPIO.LOW)
             
             temperature = str(temperature)
             humidty = str(humidty)
             raspID = str(1)
-            
-            #측정된 온도, 습도값으로 불쾌지수 값 계산 후 시리얼 모니터에 출력
-  
-            
             
             now = datetime.datetime.now()
             date = now.strftime('%Y-%m-%d')
