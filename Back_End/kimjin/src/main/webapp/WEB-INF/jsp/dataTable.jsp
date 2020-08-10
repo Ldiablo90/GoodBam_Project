@@ -78,7 +78,7 @@ li:hover{
 	  <div class="container-fluid" id="head">
    		
         <div class="navbar-header">
-          <a href="index.jsp"><img src="/asset/logow.PNG" class="navbar-brand" style="width:150px; height: 60px;" ></a>
+          <a href="/"><img src="/asset/logow.PNG" class="navbar-brand" style="width:150px; height: 60px;" ></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -97,8 +97,8 @@ li:hover{
 		<div class="row">
 	        <div class="col-sm-2">
 	          <ul class="side" >
-	            <li><a href="memberList.jsp">회원관리</a></li>
-	            <li><a href="dataTable.jsp">데이터분석</a></li>
+	            <li><a href="memberList">회원관리</a></li>
+	            <li><a href="dataTable">데이터분석</a></li>
 	          </ul>
 	       </div>
         <div class="col-sm-9">
@@ -117,7 +117,7 @@ li:hover{
                   <th>UserId</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Update/Delete</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
                 <tbody>

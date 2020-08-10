@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,14 +27,14 @@ public class TemperatureController {
     UserService userService;
 
     @GetMapping("/test")
-    public String testPage(String temperature, String humidty, String raspID,String time,String date,Integer userNum) throws Exception {
+    public String testPage(@RequestParam String temperature, @RequestParam String humidty, @RequestParam String raspID, @RequestParam String time, @RequestParam String date, @RequestParam String userID) throws Exception {
         TemperatureVO temperatureVO = new TemperatureVO();
         temperatureVO.setHumidity(humidty);
         temperatureVO.setTemperature(temperature);
         temperatureVO.setRaspID(raspID);
         temperatureVO.setTime(time);
         temperatureVO.setDate(date);
-        temperatureVO.setUserNum(userNum);
+        temperatureVO.setUserID(userID);
         temperatureService.insertTemperature(temperatureVO);
 
         return "success";
