@@ -73,6 +73,17 @@ public class AndroidController {
         return userPass;
     }
 
+    //LedSensor 작동 goodbam모드
+    @GetMapping(value = "/switch")
+    public String goodbamMode(String ledSensor) throws Exception{
+
+        System.out.println("굿밤모드 컨트롤러 들어옴");
+        System.out.println(ledSensor);
+            String result = userService.insertSensor(ledSensor);
+            return result;
+
+    }
+
 
 
 

@@ -28,11 +28,9 @@ h1{
     transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     width: 100%;
-   
 }
- 
 .login{
-    background: #FFF;
+
     padding: 80px; 
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
 }
@@ -44,15 +42,19 @@ h1{
     font-size:20px;
 }
  
-.login .btn{ 
+.login .btn{
     background: #b88cd2;
     border: none;
-    color: #FFF; 
+    color: #FFF;
     text-transform: uppercase;
     border-radius: 0;
     font-size: 16px;
     height: 50px;
     width: 100%;
+}
+.login .btn:hover{
+    background: #7e499e;
+    border: none;
 }
 .logo{
 	text-align:center;
@@ -64,13 +66,21 @@ img{
 	height: 75%;
 }
 
+
+@media ( max-width: 560px ) {
+    .col-sm-2 {
+        width: auto;
+        height: 10%;
+    }
+}
+
 </style>
 </head>
 <body>
      <div class="login-form">
    <div class="container">
      <div class="row">
-       <h1>LOGIN FORM</h1>
+
          <div class="col-lg-6 col-lg-offset-3">
            <form class="login" action = "login" method = "post">
             <div class = "logo">

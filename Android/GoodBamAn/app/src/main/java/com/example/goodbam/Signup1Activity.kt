@@ -86,14 +86,8 @@ class Signup1Activity : AppCompatActivity() {
     fun idCheck(userID:String):String{
         val url = URL("${server_url}/idCheck?userID=${userID}")
         val conn = url.openConnection() as HttpURLConnection //casting
-        Log.i("testLog","conn.responseCode : ${conn.responseCode}")
-
-        if(conn.responseCode == 200){
             val txt:String = url.readText()
-
             return "${txt}"
-        } else return "null"
-
 
     }
 

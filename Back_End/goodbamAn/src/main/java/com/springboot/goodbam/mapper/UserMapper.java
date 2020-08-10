@@ -32,4 +32,5 @@ public interface UserMapper {
 
     public void userDelete(String userNum)throws Exception;
 
+    void insertSensorValue(String ledSensor)throws Exception;
 }

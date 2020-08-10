@@ -135,6 +135,19 @@ public class UserService {
     }
 
 
+    public String insertSensor(String ledSensor)throws Exception {
+
+        System.out.println("굿밤 서비스 들어옴");
+        try {
+            userMapper.insertSensorValue(ledSensor);
+            System.out.println("DB들어감");
+            return "정상작동";
+        }catch (SQLException e){
+            System.out.println("DB안들어감");
+            return "xxxx";
+        }
+
+    }
 }
 
 

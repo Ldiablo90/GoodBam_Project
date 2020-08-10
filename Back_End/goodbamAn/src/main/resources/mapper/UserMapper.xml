@@ -54,5 +54,10 @@
         delete from MEMBER where userNum = #{userNum}
     </delete>
 
+    <insert id="insertSensorValue" parameterType="String">
+
+        insert into SENSOR(ledSensor) VALUES(#{ledSensor});
+
+    </insert>
 
 </mapper>

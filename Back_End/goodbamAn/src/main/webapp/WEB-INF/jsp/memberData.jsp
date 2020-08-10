@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,18 +56,30 @@ li:hover{
 }
 .buttondisplay{
 	float: right;
-	
+	color: #FFF;
+	text-align: center;
+	cursor: pointer;
+	width: 8%;
+	height: 40px;
+	line-height: 40px;
+	background: rgba(184, 140, 210, 0.82);
+	border-bottom: 3px solid rgba(175, 128, 201, 0.81);
+	-webkit-box-shadow: inset 0 -3px rgba(156, 106, 182, 0.89);
+	box-shadow: inset 0 -3px #9c6ab6;
+
+
 }
-.btn-primary {
-    background-color: #b88cd2;
-    border-color: #7bc143;
-    color: #FFF; 
-    }
-<%-- @media ( max-width: 560px ) {--%>
-<%--        .col-sm-2 {--%>
-<%--          width: auto;--%>
-<%--          height:10%;--%>
-<%--        }--%>
+.buttondisplay a{
+	color : #FFFFFF;
+	text-decoration:none
+}
+
+@media ( max-width: 560px ) {
+	.col-sm-2 {
+		width: auto;
+		height: 10%;
+	}
+}
 </style>
 </head>
 <body>
@@ -105,26 +118,22 @@ li:hover{
       
         <h2>사용자 데이터</h2><br>
 
-        <div class = "buttondisplay">
-			<button  class ="btn btn-default">
-				<a href="dataTable">목록</a>
-			</button>
-         </div>
+			<div class = "buttondisplay" ><a  href="dataTable">목록</a></div>
 
-       	<table id = "usertable">
-			<tr>
-			<td style="width:7%;">
+			<table id = "usertable">
+				<tr>
+				<td style="width:7%;">
 
-			 글 번호 : <input type="hidden" id="num" name="num"
-					value="" readonly="readonly" style="border: none;">
-			</td>
-			<td style="width: 20%;"></td>
-			<td style="width: 20%;">아이디 :</td>
-			<td style="width: 20%;"></td>
-			<td style="width: 20%;">업데이트 날짜 :</td>
-			<td style="width: 20%;"></td>
-		</tr>
-	</table>
+				 NO : <input type="hidden" id="num" name="num"
+						value="" readonly="readonly" style="border: none;">
+				</td>
+
+				<td style="width: 20%;">ID :</td>
+
+				<td style="width: 20%;">DATE :</td>
+
+			</tr>
+			</table>
 
 		
 	<div class="userContent">
@@ -184,19 +193,9 @@ li:hover{
 						{
 
 							label : "Date Temperature",
-
-							fillColor : "rbga(151,187,205,0.2)",
-
-							strokeColor : "rbga(151,187,205,1)",
-
-							pointColor : "rbga(151,187,205,1)",
-
-							pointStrokeColor : "#fff",
-
-							pointHighlightFill : "#fff",
-
-							pointHighlightStroke : "rbga(151,187,205,1)",
-
+							fill: true,
+							backgroundColor: "rgba(210,140,162,0.47)",
+							borderColor: "rgb(236,126,128)",
 							data : tempData
 
 
@@ -300,17 +299,9 @@ li:hover{
 
 								label : "Date humidity",
 
-								fillColor : "rbga(151,187,205,0.2)",
-
-								strokeColor : "rbga(151,187,205,1)",
-
-								pointColor : "rbga(151,187,205,1)",
-
-								pointStrokeColor : "#fff",
-
-								pointHighlightFill : "#fff",
-
-								pointHighlightStroke : "rbga(151,187,205,1)",
+								fill: true,
+								backgroundColor: "rgba(140,186,210,0.47)",
+								borderColor: "rgb(129,166,229)",
 
 								data : humidityData
 
