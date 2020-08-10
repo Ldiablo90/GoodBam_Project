@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.goodbam.mapper.TemperatureMapper">
+    <insert id="insertTemperature" parameterType="com.springboot.goodbam.vo.TemperatureVO">
+        insert into TEMPERATURE(userNum,raspID,temperature,humidity,time,date) values (1,#{raspID},#{temperature},#{humidity},#{time},#{date})
+    </insert>
+
+    <select id ="temperatureList" resultType="com.springboot.goodbam.vo.TemperatureVO">
+        select * from TEMPERATURE
+    </select>
+
+
+    <delete id="delete" parameterType="String">
+        delete from TEMPERATURE where userNum = #{userNum};
+    </delete>
+
+</mapper>

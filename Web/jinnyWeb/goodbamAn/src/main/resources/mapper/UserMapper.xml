@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.goodbam.mapper.UserMapper">
+    <select id="userList" resultType="com.springboot.goodbam.vo.UserVO">
+        select * from MEMBER;
+    </select>
+
+    <!-- 로그인 쿼리-->
+    <select id="login" parameterType="com.springboot.goodbam.vo.UserVO"
+                        resultType= "Int">
+        select COUNT(*) from MEMBER where userID=#{userID} and userPass=#{userPass};
+
+    </select>
+
+    <!-- 회원가입 쿼리-->
+    <insert id="signUpis" parameterType="com.springboot.goodbam.vo.UserVO">
+        insert into MEMBER(userID,userPass,userName,userQue,userAns,userSignupdate) VALUES(#{userID},#{userPass},#{userName},#{userQue},#{userAns},#{userSignupdate});
+
+
+
+    </insert>
+
+    <!-- 아이디 중복확인 쿼리-->
+    <select id="idCheck" parameterType= "String" resultType="Int">
+
+        select count(*) from MEMBER where userID=#{userID};
+
+    </select>
+
+    <!-- 아디찾기 시 쿼리 -->
+    <select id="searchID" parameterType= "com.springboot.goodbam.vo.UserVO" resultType="String">
+
+        select userID from MEMBER where userName=#{userName} AND userQue=#{userQue} AND userAns=#{userAns};
+
+    </select>
+
+    <!-- 비밀번호찾기 시 쿼리 -->
+    <select id="searchPass" parameterType= "com.springboot.goodbam.vo.UserVO" resultType="String">
+
+        select userPass from MEMBER where userID=#{userID} AND userName=#{userName} AND userQue=#{userQue} AND userAns=#{userAns};
+
+    </select>
+
+    <select id="loginWeb" parameterType="String" resultType="int">
+
+        select count(*) from admin where adminNo=#{userPW}
+
+    </select>
+
+
+    <delete id="userDelete" parameterType="String">
+        delete from MEMBER where userNum = #{userNum}
+    </delete>
+
+
+</mapper>
