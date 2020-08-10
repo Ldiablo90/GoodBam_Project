@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="4"
-                android:src="@drawable/goodbam"
+                android:src="@drawable/logoh"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
 

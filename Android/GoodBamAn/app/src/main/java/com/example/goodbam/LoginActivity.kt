@@ -59,12 +59,10 @@ class LoginActivity : AppCompatActivity() {
         val conn = url.openConnection() as HttpURLConnection //casting
         Log.i("testLog","conn.responseCode : ${conn.responseCode}")
 
-        if(conn.responseCode == 200){
+
             val txt:String = url.readText()
 
             return "${txt}"
-        } else return "null"
-
 
     }
 

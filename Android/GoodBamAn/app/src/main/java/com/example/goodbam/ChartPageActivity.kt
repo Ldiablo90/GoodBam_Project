@@ -31,8 +31,7 @@ class ChartPageActivity : AppCompatActivity() {
         setHumidityChart()
 
         chart_btn_back.setOnClickListener {
-            Toast.makeText(this,"아직 미구현",Toast.LENGTH_SHORT).show()
-            var intnet = Intent(this,MainActivity::class.java)
+            var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
     }
