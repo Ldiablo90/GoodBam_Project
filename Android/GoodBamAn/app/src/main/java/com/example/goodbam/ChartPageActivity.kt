@@ -175,7 +175,8 @@ class ChartPageActivity : AppCompatActivity() {
         val min = 30.0
         val max = 90.0
 
-        val input = arrayList
+        val humarr = arrayList
+        val input = Array<Float>(7,{i->humarr[i]})
         Log.i("test humilist","humilist : ${input}")
         //Entry 배열 생성
 
@@ -185,6 +186,7 @@ class ChartPageActivity : AppCompatActivity() {
 
         var dataset: LineDataSet = LineDataSet(entries, "실내습도 (%)")
         //그래프 data생성 -> 최종 입력 데이터
+
         dataset.setColor(ContextCompat.getColor(this, R.color.blue))
         //LineChart에서 Line Color 설정
         dataset.setCircleColor(ContextCompat.getColor(this, R.color.blue))
@@ -193,8 +195,8 @@ class ChartPageActivity : AppCompatActivity() {
         // LineChart에서 Line Hole Circle Colo
         var data: LineData = LineData(dataset)
         //chart.xml에 배치된 linChart에 데이터 연결
-        humidity_chart.data = data
 
+        humidity_chart.data = data
         humidity_chart.animateXY(0, 0)
 
         for (i in 0 until input.size) {
