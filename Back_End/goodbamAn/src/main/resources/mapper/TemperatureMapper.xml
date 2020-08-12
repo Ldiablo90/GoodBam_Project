@@ -3,15 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.goodbam.mapper.TemperatureMapper">
+    <!--라즈베리파이 온습도 데이터 DB에 저장-->
     <insert id="insertTemperature" parameterType="com.springboot.goodbam.vo.TemperatureVO">
-        insert into TEMPERATURE(userNum,raspID,temperature,humidity,time,date) values (1,#{raspID},#{temperature},#{humidity},#{time},#{date})
+        insert into TEMPERATURE(userNum,raspID,temperature,humidity,time,date)
+        values (1,#{raspID},#{temperature},#{humidity},#{time},#{date})
     </insert>
-
+    <!--유저별 온습도 데이터 차트 -->
     <select id ="temperatureList" resultType="com.springboot.goodbam.vo.TemperatureVO">
-        select * from TEMPERATURE
+        select * from TEMPERATURE;
     </select>
-
-
+    <!--온습도 데이터 DB에 삭제-->
     <delete id="delete" parameterType="String">
         delete from TEMPERATURE where userNum = #{userNum};
     </delete>
