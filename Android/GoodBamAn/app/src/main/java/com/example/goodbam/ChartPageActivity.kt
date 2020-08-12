@@ -50,15 +50,15 @@ class ChartPageActivity : AppCompatActivity() {
         val xLabel = ArrayList<String>()
         val cal = Calendar.getInstance()
         cal.time = Date()
-        val df:DateFormat = SimpleDateFormat("MM-dd")
+        val df: DateFormat = SimpleDateFormat("MM-dd")
 
-        for (i in 0 .. 7){
+        for (i in 0..7) {
 
-            cal.add(Calendar.DATE,-7+i)
+            cal.add(Calendar.DATE, -7 + i)
 
             xLabel.add("${df.format(cal.time)}")
 
-            cal.add(Calendar.DATE,7-i)
+            cal.add(Calendar.DATE, 7 - i)
         }
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
 
@@ -91,38 +91,41 @@ class ChartPageActivity : AppCompatActivity() {
             setExtraOffsets(8f, 16f, 8f, 16f)//차트 padding 설정
         }
 
-        val tempinput = templist()
-        var input = arrayListOf<String>()
-        for(i in tempinput){
-            input.add(i)
+        Thread() {
+
+
+            val tempinput = templist()
+            var input = arrayListOf<String>()
+            for (i in tempinput) {
+                input.add(i)
+            }
+            //Entry 배열 생성
+
+            var entries: ArrayList<Entry> = ArrayList()
+
+            //그래프 구현을 위한 LineDataSet생성
+
+            var dataset: LineDataSet = LineDataSet(entries, "실내온도 (℃)")
+            //그래프 data생성 -> 최종 입력 데이터
+
+            dataset.setColor(ContextCompat.getColor(this, R.color.pink))
+            //LineChart에서 Line Color 설정
+            dataset.setCircleColor(ContextCompat.getColor(this, R.color.pink))
+            // LineChart에서 Line Circle Color 설정
+            dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
+            // LineChart에서 Line Hole Circle Colo
+
+            var data: LineData = LineData(dataset)
+            //chart.xml에 배치된 linChart에 데이터 연결
+
+            temperature_chart.data = data
+            temperature_chart.animateXY(0, 0)
+
+            for (i in 0 until input.size) {
+                data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
+                temperature_chart.invalidate()
+            }
         }
-        //Entry 배열 생성
-
-        var entries: ArrayList<Entry> = ArrayList()
-
-        //그래프 구현을 위한 LineDataSet생성
-
-        var dataset: LineDataSet = LineDataSet(entries, "실내온도 (℃)")
-        //그래프 data생성 -> 최종 입력 데이터
-
-        dataset.setColor(ContextCompat.getColor(this, R.color.pink))
-        //LineChart에서 Line Color 설정
-        dataset.setCircleColor(ContextCompat.getColor(this, R.color.pink))
-        // LineChart에서 Line Circle Color 설정
-        dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
-        // LineChart에서 Line Hole Circle Colo
-
-        var data: LineData = LineData(dataset)
-        //chart.xml에 배치된 linChart에 데이터 연결
-
-        temperature_chart.data = data
-        temperature_chart.animateXY(0, 0)
-
-        for (i in 0 until input.size) {
-            data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
-            temperature_chart.invalidate()
-        }
-
     }
 
 
@@ -132,15 +135,15 @@ class ChartPageActivity : AppCompatActivity() {
         val xLabel = ArrayList<String>()
         val cal = Calendar.getInstance()
         cal.time = Date()
-        val df:DateFormat = SimpleDateFormat("MM-dd")
+        val df: DateFormat = SimpleDateFormat("MM-dd")
 
-        for (i in 0 .. 7){
+        for (i in 0..7) {
 
-            cal.add(Calendar.DATE,-7+i)
+            cal.add(Calendar.DATE, -7 + i)
 
             xLabel.add("${df.format(cal.time)}")
 
-            cal.add(Calendar.DATE,7-i)
+            cal.add(Calendar.DATE, 7 - i)
         }
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
 
@@ -176,39 +179,39 @@ class ChartPageActivity : AppCompatActivity() {
 
         val min = 30.0
         val max = 90.0
+        Thread() {
+            val humiinput = humilist()
+            var input = arrayListOf<String>()
 
-        val humiinput = humilist()
-        var input = arrayListOf<String>()
+            for (i in humiinput) {
+                input.add(i)
+            }
+            //Entry 배열 생성
 
-        for(i in humiinput){
-            input.add(i)
+            var entries: ArrayList<Entry> = ArrayList()
+
+            //그래프 구현을 위한 LineDataSet생성
+
+            var dataset: LineDataSet = LineDataSet(entries, "실내습도 (%)")
+            //그래프 data생성 -> 최종 입력 데이터
+            dataset.setColor(ContextCompat.getColor(this, R.color.blue))
+            //LineChart에서 Line Color 설정
+            dataset.setCircleColor(ContextCompat.getColor(this, R.color.blue))
+            // LineChart에서 Line Circle Color 설정
+            dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
+            // LineChart에서 Line Hole Circle Colo
+
+            var data: LineData = LineData(dataset)
+            //chart.xml에 배치된 linChart에 데이터 연결
+            humidity_chart.data = data
+
+            humidity_chart.animateXY(0, 0)
+
+            for (i in 0 until input.size) {
+                data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
+                humidity_chart.invalidate()
+            }
         }
-        //Entry 배열 생성
-
-        var entries: ArrayList<Entry> = ArrayList()
-
-        //그래프 구현을 위한 LineDataSet생성
-
-        var dataset: LineDataSet = LineDataSet(entries, "실내습도 (%)")
-        //그래프 data생성 -> 최종 입력 데이터
-        dataset.setColor(ContextCompat.getColor(this, R.color.blue))
-        //LineChart에서 Line Color 설정
-        dataset.setCircleColor(ContextCompat.getColor(this, R.color.blue))
-        // LineChart에서 Line Circle Color 설정
-        dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
-        // LineChart에서 Line Hole Circle Colo
-
-        var data: LineData = LineData(dataset)
-        //chart.xml에 배치된 linChart에 데이터 연결
-        humidity_chart.data = data
-
-        humidity_chart.animateXY(0, 0)
-
-        for (i in 0 until input.size) {
-            data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
-            humidity_chart.invalidate()
-        }
-
     }
 
     // 온습도 가져오기
