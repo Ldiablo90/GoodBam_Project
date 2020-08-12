@@ -7,7 +7,7 @@ import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.goodbam.Static.Companion.server_url
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
         //안될시 와이파이 설정할것
         //http://192.168.0.9/kotlinProject/test.json
-        val url = URL("http://192.168.0.61:8070/ondoPrint")
+        val url = URL("${server_url}/ondoPrint")
         val conn = url.openConnection() as HttpURLConnection
         Log.i("testLog","conn.responseCode:${conn.responseCode}")
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
 
             fun switch(night_mode:String):String{
-                val url = URL("${Static.server_url}/switch?ledSensor=${night_mode}")
+                val url = URL("${server_url}/switch?ledSensor=${night_mode}")
                 val conn = url.openConnection() as HttpURLConnection
                 val txt:String = url.readText()
                 return "${txt}"

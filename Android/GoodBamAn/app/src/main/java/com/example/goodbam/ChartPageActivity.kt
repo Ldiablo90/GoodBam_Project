@@ -4,18 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import kotlinx.android.synthetic.main.activity_main.*
 import com.example.goodbam.Static.Companion.server_url
 import kotlinx.android.synthetic.main.chart.*
 import org.json.JSONArray
@@ -29,13 +25,17 @@ import kotlin.collections.ArrayList
 
 
 class ChartPageActivity : AppCompatActivity() {
+
+    private val handler: Handler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chart)
+        Thread(){
 
-        setTemperatureChart()
+            templist()
 
-        setHumidityChart()
+        }.start()
 
         chart_btn_back.setOnClickListener {
             var intent = Intent(this,MainActivity::class.java)
@@ -44,7 +44,7 @@ class ChartPageActivity : AppCompatActivity() {
     }
 
 
-    fun setTemperatureChart() {
+    fun setTemperatureChart(arrayList: ArrayList<Float>) {
         val xAxis = temperature_chart.xAxis // x축 가져오기
 
         val xLabel = ArrayList<String>()
@@ -61,7 +61,6 @@ class ChartPageActivity : AppCompatActivity() {
             cal.add(Calendar.DATE, 7 - i)
         }
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
-
         xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM //x축 데이터의 위치를 아래로
             textSize = 10f // 텍스트 크기 지정(float 형으로 해주어야 함!
@@ -91,45 +90,42 @@ class ChartPageActivity : AppCompatActivity() {
             setExtraOffsets(8f, 16f, 8f, 16f)//차트 padding 설정
         }
 
-        Thread() {
+        val min = 18.0
+        val max = 40.0
 
+        var input = arrayList
+        Log.i("test templist","templist : ${input}")
+        //Entry 배열 생성
 
-            val tempinput = templist()
-            var input = arrayListOf<Float>()
-            for (i in tempinput) {
-                input.add(i.toFloat())
-            }
-            //Entry 배열 생성
+        var entries: ArrayList<Entry> = ArrayList()
 
-            var entries: ArrayList<Entry> = ArrayList()
+        //그래프 구현을 위한 LineDataSet생성
 
-            //그래프 구현을 위한 LineDataSet생성
+        var dataset: LineDataSet = LineDataSet(entries, "실내온도 (℃)")
+        //그래프 data생성 -> 최종 입력 데이터
 
-            var dataset: LineDataSet = LineDataSet(entries, "실내온도 (℃)")
-            //그래프 data생성 -> 최종 입력 데이터
+        dataset.setColor(ContextCompat.getColor(this, R.color.pink))
+        //LineChart에서 Line Color 설정
+        dataset.setCircleColor(ContextCompat.getColor(this, R.color.pink))
+        // LineChart에서 Line Circle Color 설정
+        dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
+        // LineChart에서 Line Hole Circle Colo
+        var data: LineData = LineData(dataset)
+        //chart.xml에 배치된 linChart에 데이터 연결
 
-            dataset.setColor(ContextCompat.getColor(this, R.color.pink))
-            //LineChart에서 Line Color 설정
-            dataset.setCircleColor(ContextCompat.getColor(this, R.color.pink))
-            // LineChart에서 Line Circle Color 설정
-            dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
-            // LineChart에서 Line Hole Circle Colo
+        temperature_chart.data = data
+        temperature_chart.animateXY(0, 0)
 
-            var data: LineData = LineData(dataset)
-            //chart.xml에 배치된 linChart에 데이터 연결
-
-            temperature_chart.data = data
-            temperature_chart.animateXY(0, 0)
-
-            for (i in 0 until input.size) {
-                data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
-                temperature_chart.invalidate()
-            }
+        for (i in 0 until input.size) {
+            data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
+            Log.i("test temp","i : $i input[$i] : ${input[i]}")
+            temperature_chart.invalidate()
         }
     }
 
 
-    fun setHumidityChart() {
+    fun setHumidityChart(arrayList: ArrayList<Float>) {
+
         val xAxis = humidity_chart.xAxis // x축 가져오기
 
         val xLabel = ArrayList<String>()
@@ -154,7 +150,6 @@ class ChartPageActivity : AppCompatActivity() {
             granularity = 1f // x축 데이터 표시 간격
             axisMinimum = 0f // x축 데이터의 최소 표시값
             isGranularityEnabled = true // x축 간격을 제한하는 세분화 기능
-
         }
         humidity_chart.apply {
             axisRight.isEnabled = false // y축의 오른쪽 데이터 비활성화
@@ -179,108 +174,72 @@ class ChartPageActivity : AppCompatActivity() {
 
         val min = 30.0
         val max = 90.0
-        Thread() {
-            val humiinput = humilist()
-            var input = arrayListOf<Float>()
 
-            for (i in humiinput) {
-                input.add(i.toFloat())
-            }
-            //Entry 배열 생성
+        val input = arrayList
+        Log.i("test humilist","humilist : ${input}")
+        //Entry 배열 생성
 
-            var entries: ArrayList<Entry> = ArrayList()
+        var entries: ArrayList<Entry> = ArrayList()
 
-            //그래프 구현을 위한 LineDataSet생성
+        //그래프 구현을 위한 LineDataSet생성
 
-            var dataset: LineDataSet = LineDataSet(entries, "실내습도 (%)")
-            //그래프 data생성 -> 최종 입력 데이터
-            dataset.setColor(ContextCompat.getColor(this, R.color.blue))
-            //LineChart에서 Line Color 설정
-            dataset.setCircleColor(ContextCompat.getColor(this, R.color.blue))
-            // LineChart에서 Line Circle Color 설정
-            dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
-            // LineChart에서 Line Hole Circle Colo
+        var dataset: LineDataSet = LineDataSet(entries, "실내습도 (%)")
+        //그래프 data생성 -> 최종 입력 데이터
+        dataset.setColor(ContextCompat.getColor(this, R.color.blue))
+        //LineChart에서 Line Color 설정
+        dataset.setCircleColor(ContextCompat.getColor(this, R.color.blue))
+        // LineChart에서 Line Circle Color 설정
+        dataset.setCircleHoleColor(ContextCompat.getColor(this, R.color.white))
+        // LineChart에서 Line Hole Circle Colo
+        var data: LineData = LineData(dataset)
+        //chart.xml에 배치된 linChart에 데이터 연결
+        humidity_chart.data = data
 
-            var data: LineData = LineData(dataset)
-            //chart.xml에 배치된 linChart에 데이터 연결
-            humidity_chart.data = data
+        humidity_chart.animateXY(0, 0)
 
-            humidity_chart.animateXY(0, 0)
-
-            for (i in 0 until input.size) {
-                data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
-                humidity_chart.invalidate()
-            }
+        for (i in 0 until input.size) {
+            data.addEntry(Entry(i.toFloat(), input[i].toFloat()), 0)
+            humidity_chart.invalidate()
         }
     }
 
     // 온습도 가져오기
-    fun templist(): ArrayList<String> {
+    fun templist(){
         //테스트 하려는 디바이스에서 브라우져를 열고
         //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
         //안될시 와이파이 설정할것
         //http://192.168.0.9/kotlinProject/test.json
         val url = URL("${server_url}/ondoPrint")
         val conn = url.openConnection() as HttpURLConnection
-        Log.i("testLog","conn.responseCode:${conn.responseCode}")
-        var templist = arrayListOf<String>()
 
+        var temparr = ArrayList<Float>()
+        var humiarr = ArrayList<Float>()
         if(conn.responseCode==200){
             println("=== url.readText() ===")
             val txt = url.readText()
             println(txt)
 
             val arr = JSONArray(txt)
-            for(i in 0..7){
+            for(i in 0..6){
                 val obj: JSONObject = arr.get(i) as JSONObject
-                templist.add(obj["temperature"].toString())
+                temparr.add(obj["temperature"].toString().toFloat())
+                humiarr.add(obj["humidity"].toString().toFloat())
             }
-            return templist
+            Log.i("testLog","temparr / $temparr")
+            Log.i("testLog","humiarr / $humiarr")
+            handler.post {
+
+                setTemperatureChart(temparr)
+
+                setHumidityChart(humiarr)
+            }
         }else{
-            for(i in 0..7){
-                templist.add("18")
+            for(i in 0..6){
+                temparr.add(28.0f)
+                humiarr.add(28.0f)
             }
-            return templist
         }
     }
-    // 온습도 가져오기
-    fun humilist(): ArrayList<String> {
-        //테스트 하려는 디바이스에서 브라우져를 열고
-        //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
-        //안될시 와이파이 설정할것
-        //http://192.168.0.9/kotlinProject/test.json
-        val url = URL("${server_url}/ondoPrint")
-        val conn = url.openConnection() as HttpURLConnection
-        Log.i("testLog","conn.responseCode:${conn.responseCode}")
-
-        var humilist = arrayListOf<String>()
-        if(conn.responseCode==200){
-            println("=== url.readText() ===")
-            val txt = url.readText()
-            println(txt)
-
-            //XML - DOM-문서전체읽은후
-            //      SAX-문서를 읽으면서
-            //      pull-편리 상수화
-
-            //분석:데이터 파싱
-            //JSON [,,]:Array, {"K":"V", , ,}:Object
-
-            val arr = JSONArray(txt)
-            for(i in 0..7){
-                val obj: JSONObject = arr.get(i) as JSONObject
-                humilist.add(obj["humidity"].toString())
-            }
-            return humilist
-        }else{
-            for(i in 0..7){
-                humilist.add("18")
-            }
-            return humilist
-        }
-    }
-
-
 
 }
 

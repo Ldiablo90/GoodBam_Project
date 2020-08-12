@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login(userID:String, userPW:String):String{
-        val url = URL("${server_url}/login?userID=${userID}&userPW=${userPW}")
+        val url = URL("${server_url}/applogin?userID=${userID}&userPW=${userPW}")
         val conn = url.openConnection() as HttpURLConnection //casting
         Log.i("testLog","conn.responseCode : ${conn.responseCode}")
 
