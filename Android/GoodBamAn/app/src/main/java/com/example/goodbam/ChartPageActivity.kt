@@ -61,6 +61,7 @@ class ChartPageActivity : AppCompatActivity() {
             cal.add(Calendar.DATE, 7 - i)
         }
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
+
         xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM //x축 데이터의 위치를 아래로
             textSize = 10f // 텍스트 크기 지정(float 형으로 해주어야 함!
