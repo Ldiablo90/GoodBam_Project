@@ -95,9 +95,9 @@ class ChartPageActivity : AppCompatActivity() {
 
 
             val tempinput = templist()
-            var input = arrayListOf<String>()
+            var input = arrayListOf<Float>()
             for (i in tempinput) {
-                input.add(i)
+                input.add(i.toFloat())
             }
             //Entry 배열 생성
 
@@ -181,10 +181,10 @@ class ChartPageActivity : AppCompatActivity() {
         val max = 90.0
         Thread() {
             val humiinput = humilist()
-            var input = arrayListOf<String>()
+            var input = arrayListOf<Float>()
 
             for (i in humiinput) {
-                input.add(i)
+                input.add(i.toFloat())
             }
             //Entry 배열 생성
 
