@@ -1,6 +1,7 @@
 package com.springboot.goodbam.svc;
 
 import com.springboot.goodbam.mapper.UserMapper;
+import com.springboot.goodbam.vo.TemperatureVO;
 import com.springboot.goodbam.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -147,6 +148,11 @@ public class UserService {
             return "xxxx";
         }
 
+    }
+
+    public List<TemperatureVO> chartlist(TemperatureVO temperatureVO) throws Exception {
+
+        return userMapper.chartlist(temperatureVO);
     }
 }
 

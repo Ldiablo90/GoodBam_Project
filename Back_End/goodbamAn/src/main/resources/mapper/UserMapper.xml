@@ -60,4 +60,9 @@
 
     </insert>
 
+    <select id="chartlist" parameterType="com.springboot.goodbam.vo.TemperatureVO" resultType="com.springboot.goodbam.vo.TemperatureVO">
+        select * from TEMPERATURE where raspID=#{raspID};
+
+    </select>
+
 </mapper>

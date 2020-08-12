@@ -10,8 +10,12 @@ import java.util.List;
 @Repository
 public interface TemperatureMapper {
     public void insertTemperature(TemperatureVO temperatureVO) throws Exception;
+
     public List<TemperatureVO> temperatureList() throws Exception;
+
     public void delete(String userNum)throws Exception;
+
+
 
 
 }

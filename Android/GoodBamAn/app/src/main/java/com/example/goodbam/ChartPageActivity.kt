@@ -2,6 +2,7 @@ package com.example.goodbam
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,13 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.android.synthetic.main.activity_main.*
+import com.example.goodbam.Static.Companion.server_url
 import kotlinx.android.synthetic.main.chart.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -84,10 +91,11 @@ class ChartPageActivity : AppCompatActivity() {
             setExtraOffsets(8f, 16f, 8f, 16f)//차트 padding 설정
         }
 
-        val min = 18.0
-        val max = 40.0
-
-        val input = Array<Float>(7,{(Math.random() * (max - min) + min).toFloat()})
+        val tempinput = templist()
+        var input = arrayListOf<String>()
+        for(i in tempinput){
+            input.add(i)
+        }
         //Entry 배열 생성
 
         var entries: ArrayList<Entry> = ArrayList()
@@ -169,7 +177,12 @@ class ChartPageActivity : AppCompatActivity() {
         val min = 30.0
         val max = 90.0
 
-        val input = Array<Float>(7,{(Math.random() * (max - min) + min).toFloat()})
+        val humiinput = humilist()
+        var input = arrayListOf<String>()
+
+        for(i in humiinput){
+            input.add(i)
+        }
         //Entry 배열 생성
 
         var entries: ArrayList<Entry> = ArrayList()
@@ -198,7 +211,71 @@ class ChartPageActivity : AppCompatActivity() {
 
     }
 
+    // 온습도 가져오기
+    fun templist(): ArrayList<String> {
+        //테스트 하려는 디바이스에서 브라우져를 열고
+        //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
+        //안될시 와이파이 설정할것
+        //http://192.168.0.9/kotlinProject/test.json
+        val url = URL("${server_url}/ondoPrint")
+        val conn = url.openConnection() as HttpURLConnection
+        Log.i("testLog","conn.responseCode:${conn.responseCode}")
+        var templist = arrayListOf<String>()
 
+        if(conn.responseCode==200){
+            println("=== url.readText() ===")
+            val txt = url.readText()
+            println(txt)
+
+            val arr = JSONArray(txt)
+            for(i in 0..7){
+                val obj: JSONObject = arr.get(i) as JSONObject
+                templist.add(obj["temperature"].toString())
+            }
+            return templist
+        }else{
+            for(i in 0..7){
+                templist.add("18")
+            }
+            return templist
+        }
+    }
+    // 온습도 가져오기
+    fun humilist(): ArrayList<String> {
+        //테스트 하려는 디바이스에서 브라우져를 열고
+        //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
+        //안될시 와이파이 설정할것
+        //http://192.168.0.9/kotlinProject/test.json
+        val url = URL("${server_url}/ondoPrint")
+        val conn = url.openConnection() as HttpURLConnection
+        Log.i("testLog","conn.responseCode:${conn.responseCode}")
+
+        var humilist = arrayListOf<String>()
+        if(conn.responseCode==200){
+            println("=== url.readText() ===")
+            val txt = url.readText()
+            println(txt)
+
+            //XML - DOM-문서전체읽은후
+            //      SAX-문서를 읽으면서
+            //      pull-편리 상수화
+
+            //분석:데이터 파싱
+            //JSON [,,]:Array, {"K":"V", , ,}:Object
+
+            val arr = JSONArray(txt)
+            for(i in 0..7){
+                val obj: JSONObject = arr.get(i) as JSONObject
+                humilist.add(obj["humidity"].toString())
+            }
+            return humilist
+        }else{
+            for(i in 0..7){
+                humilist.add("18")
+            }
+            return humilist
+        }
+    }
 
 
 

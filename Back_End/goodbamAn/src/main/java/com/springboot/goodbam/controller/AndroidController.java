@@ -1,11 +1,14 @@
 package com.springboot.goodbam.controller;
 
 import com.springboot.goodbam.svc.UserService;
+import com.springboot.goodbam.vo.TemperatureVO;
 import com.springboot.goodbam.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class AndroidController {
@@ -83,8 +86,13 @@ public class AndroidController {
             return result;
 
     }
-
-
+    // 차트 값 가져오기
+    @GetMapping(value = "/chartlist")
+    public List<TemperatureVO> chartlist(String raspID) throws Exception {
+        TemperatureVO raspid = new TemperatureVO();
+        raspid.setRaspID(raspID);
+        return userService.chartlist(raspid);
+    }
 
 
 

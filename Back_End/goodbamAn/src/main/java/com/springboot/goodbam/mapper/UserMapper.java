@@ -1,5 +1,6 @@
 package com.springboot.goodbam.mapper;
 
+import com.springboot.goodbam.vo.TemperatureVO;
 import com.springboot.goodbam.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,7 @@ public interface UserMapper {
     public void userDelete(String userNum)throws Exception;
 
     void insertSensorValue(String ledSensor)throws Exception;
+
+    // 안드로이드 차트리스트 맵퍼
+    public List<TemperatureVO> chartlist(TemperatureVO temperatureVO) throws Exception;
 }
