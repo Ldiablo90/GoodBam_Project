@@ -17,7 +17,7 @@ public class AndroidController {
     UserService userService;
 
     //로그인
-    @GetMapping("/applogin")
+    @GetMapping(value = "/applogin")
     public String login(String userID, String userPW) throws Exception{
         System.out.println("컨트롤러 들어옴");
         String loginSuccess = userService.Login(userID,userPW);

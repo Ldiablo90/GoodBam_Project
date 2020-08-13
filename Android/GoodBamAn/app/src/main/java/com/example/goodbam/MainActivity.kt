@@ -7,7 +7,7 @@ import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import com.example.goodbam.Static.Companion.server_url
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         Thread(){
             ondo()
         }.start()
+
         // 차트표로 이동 버튼
         main_btn_chart.setOnClickListener {
             var intent = Intent(this, ChartPageActivity::class.java)
@@ -69,12 +71,13 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
     fun ondo(){
         //테스트 하려는 디바이스에서 브라우져를 열고
         //http://192.168.0.9/kotlinProject 주소 접속유무를 확인
         //안될시 와이파이 설정할것
         //http://192.168.0.9/kotlinProject/test.json
-        val url = URL("${server_url}/ondoPrint")
+        val url = URL("${Static.server_url}/ondoPrint")
         val conn = url.openConnection() as HttpURLConnection
         Log.i("testLog","conn.responseCode:${conn.responseCode}")
 
@@ -105,7 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
             fun switch(night_mode:String):String{
-                val url = URL("${server_url}/switch?ledSensor=${night_mode}")
+                val url = URL("${Static.server_url}/switch?ledSensor=${night_mode}")
                 val conn = url.openConnection() as HttpURLConnection
                 val txt:String = url.readText()
                 return "${txt}"
